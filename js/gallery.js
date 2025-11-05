@@ -17,10 +17,12 @@ function loadGalleryGrid() {
     const container = document.getElementById('gallery-grid');
     if (!container) return;
 
-    container.innerHTML = galleryItems.map((item, index) => `
+    container.innerHTML = galleryItems.map((item, index) => {
+        const imageName = item.id <= 8 ? `gallery-${item.id}.jpg` : `Gallery-${item.id}.jpg`;
+        return `
         <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
             <div class="gallery-item position-relative">
-                <img src="img/Gallery-${item.id}.jpg" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/Gallery-${item.id}.jpg', '${item.title}')">
+                <img src="img/${imageName}" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/${imageName}', '${item.title}')">
                 <div class="gallery-overlay">
                     <div class="text-center">
                         <h6>${item.title}</h6>
@@ -29,7 +31,7 @@ function loadGalleryGrid() {
                 </div>
             </div>
         </div>
-    `).join('');
+    `;}).join('');
 
     // Update gallery count
     const galleryCount = document.getElementById('gallery-count');
