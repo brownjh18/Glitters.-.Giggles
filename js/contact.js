@@ -72,6 +72,15 @@ function selectService(serviceId, serviceTitle) {
     }
 }
 
+// Show QR code modal
+function showQRModal() {
+    const qrModal = document.getElementById('qrModal');
+    if (qrModal) {
+        const modal = new bootstrap.Modal(qrModal);
+        modal.show();
+    }
+}
+
 // Utility function to show alerts
 function showAlert(message, type) {
     const alertDiv = document.createElement('div');
