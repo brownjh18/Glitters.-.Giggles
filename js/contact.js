@@ -81,6 +81,58 @@ function showQRModal() {
     }
 }
 
+// QR code hover functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const qrHoverElements = document.querySelectorAll('.qr-code-hover');
+
+    qrHoverElements.forEach(element => {
+        let hoverTimeout;
+
+        element.addEventListener('mouseenter', function() {
+            hoverTimeout = setTimeout(() => {
+                showQRHoverModal();
+            }, 500); // 500ms delay
+        });
+
+        element.addEventListener('mouseleave', function() {
+            clearTimeout(hoverTimeout);
+        });
+    });
+});
+
+function showQRHoverModal() {
+    // Remove existing modal if any
+    const existingModal = document.querySelector('.qr-modal-overlay');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create new modal
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'qr-modal-overlay';
+    modalOverlay.innerHTML = `
+        <div class="qr-modal-content">
+            <img src="img/qr-code.png" alt="QR Code for quick contact" class="qr-image">
+            <p class="qr-text">Scan for instant contact with Glitters & Giggles</p>
+        </div>
+    `;
+
+    document.body.appendChild(modalOverlay);
+
+    // Show modal
+    setTimeout(() => {
+        modalOverlay.classList.add('show');
+    }, 10);
+
+    // Hide modal on click
+    modalOverlay.addEventListener('click', function() {
+        modalOverlay.classList.remove('show');
+        setTimeout(() => {
+            modalOverlay.remove();
+        }, 300);
+    });
+}
+
 // Utility function to show alerts
 function showAlert(message, type) {
     const alertDiv = document.createElement('div');
