@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Glitters & Giggles</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="Glitters & Giggles Logo" class="navbar-logo me-2" style="height: 40px;">
+                <strong>Glitters & Giggles</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold text-primary">Our Blog</h1>
+                    <p class="lead text-muted">Tips, stories, and insights for parents and educators</p>
+                </div>
+
+                <!-- Blog Posts Grid -->
+                <div class="row g-4" id="blog-posts">
+                    <!-- Blog posts will be loaded dynamically -->
+                </div>
+
+                <!-- Blog Detail Section (Hidden by default) -->
+                <div id="blog-detail-section" class="mt-5" style="display: none;">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <button class="btn btn-outline-secondary mb-4" onclick="hideBlogDetail()">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Blog
+                            </button>
+
+                            <div id="blog-detail-content">
+                                <!-- Blog detail content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="py-5 text-white" style="background: linear-gradient(135deg, #B8860B, #DAA520);">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 class="mb-3">Stay Updated with Our Latest Articles</h3>
+                        <p class="mb-0">Subscribe to our newsletter for exclusive parenting tips, event updates, and educational insights.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <form id="newsletter-form" class="d-flex gap-2" data-validate="true">
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <button type="submit" class="btn btn-light">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Topics -->
+        <section class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-bold text-primary">Popular Topics</h2>
+                    <p class="lead text-muted">Explore articles by topic</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <a href="blog.html" class="btn btn-outline-primary">All Topics</a>
+                            <a href="blog.html?tag=parenting" class="btn btn-outline-primary">Parenting</a>
+                            <a href="blog.html?tag=education" class="btn btn-outline-primary">Education</a>
+                            <a href="blog.html?tag=events" class="btn btn-outline-primary">Events</a>
+                            <a href="blog.html?tag=activities" class="btn btn-outline-primary">Activities</a>
+                            <a href="blog.html?tag=development" class="btn btn-outline-primary">Child Development</a>
+                            <a href="blog.html?tag=health" class="btn btn-outline-primary">Health & Safety</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="img/logo.png" alt="Glitters & Giggles Logo" class="footer-logo mb-3" style="height: 50px;">
+                    <h5>Glitters & Giggles</h5>
+                    <p>Making children events magical and memorable across Kampala, Wakiso, and Entebbe.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.tiktok.com/@glitters.and.gigg" target="_blank" class="text-light me-3" title="Follow us on TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="text-light">Our Services</a></li>
+                        <li><a href="gallery.html" class="text-light">Photo Gallery</a></li>
+                        <li><a href="blog.html" class="text-light">Blog</a></li>
+                        <li><a href="contact.html" class="text-light">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Locations</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Kampala</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Wakiso</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Entebbe</li>
+                    </ul>
+                    <p><i class="fas fa-phone me-2"></i>+256 748 123 888 / +256 775 785 911</p>
+                    <p><i class="fas fa-envelope me-2"></i>glittersandgigglesevents@gmail.com</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Glitters & Giggles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div id="whatsapp-widget" class="whatsapp-widget">
+        <a href="https://wa.me/256748123888" target="_blank" class="whatsapp-link" title="Chat with us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>
