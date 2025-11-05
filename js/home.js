@@ -82,10 +82,13 @@ function loadGalleryPreview() {
     const container = document.getElementById('gallery-preview');
     if (!container) return;
 
-    container.innerHTML = galleryItems.map((item, index) => `
+    container.innerHTML = galleryItems.map((item, index) => {
+        const imageNumber = index + 1;
+        const imageName = imageNumber <= 8 ? `gallery-${imageNumber}.jpg` : `Gallery-${imageNumber}.jpg`;
+        return `
         <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
             <div class="gallery-item">
-                <img src="img/Gallery-${index + 1}.jpg" alt="${item.title}" class="img-fluid" onerror="this.src='img/logo.png'">
+                <img src="img/${imageName}" alt="${item.title}" class="img-fluid" onerror="this.src='img/logo.png'">
                 <div class="gallery-overlay">
                     <div class="text-center">
                         <h6>${item.title}</h6>
@@ -94,7 +97,7 @@ function loadGalleryPreview() {
                 </div>
             </div>
         </div>
-    `).join('');
+    `;}).join('');
 }
 
 // Load blog preview
