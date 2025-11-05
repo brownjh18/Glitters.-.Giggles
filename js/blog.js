@@ -297,7 +297,13 @@ function showBlogDetail(postId) {
                     <!-- Social Share -->
                     <div class="mt-5 pt-4 border-top">
                         <h5>Share this article:</h5>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-primary btn-sm" onclick="shareOnFacebook('${post.title}', window.location.href)">
+                                <i class="fab fa-facebook-f me-2"></i>Facebook
+                            </button>
+                            <button class="btn btn-outline-info btn-sm" onclick="shareOnTwitter('${post.title}', window.location.href)">
+                                <i class="fab fa-twitter me-2"></i>X (Twitter)
+                            </button>
                             <button class="btn btn-outline-success btn-sm" onclick="shareOnWhatsApp('${post.title}', window.location.href)">
                                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
                             </button>
@@ -369,6 +375,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Social sharing functions
+function shareOnFacebook(title, url) {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(title)}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function shareOnTwitter(title, url) {
+    const text = encodeURIComponent(`${title} - ${url}`);
+    const shareUrl = `https://twitter.com/intent/tweet?text=${text}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
 function shareOnWhatsApp(title, url) {
     const text = encodeURIComponent(`${title} - ${url}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
