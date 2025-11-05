@@ -298,14 +298,14 @@ function showBlogDetail(postId) {
                     <div class="mt-5 pt-4 border-top">
                         <h5>Share this article:</h5>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-outline-primary btn-sm">
-                                <i class="fab fa-facebook-f me-2"></i>Facebook
-                            </button>
-                            <button class="btn btn-outline-info btn-sm">
-                                <i class="fab fa-twitter me-2"></i>Twitter
-                            </button>
-                            <button class="btn btn-outline-success btn-sm">
+                            <button class="btn btn-outline-success btn-sm" onclick="shareOnWhatsApp('${post.title}', window.location.href)">
                                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" onclick="shareOnInstagram('${post.title}', window.location.href)">
+                                <i class="fab fa-instagram me-2"></i>Instagram
+                            </button>
+                            <button class="btn btn-outline-dark btn-sm" onclick="shareOnTikTok('${post.title}', window.location.href)">
+                                <i class="fab fa-tiktok me-2"></i>TikTok
                             </button>
                         </div>
                     </div>
@@ -338,18 +338,6 @@ function showBlogDetail(postId) {
                             `).join('')}
                         </div>
                     </div>
-
-                    <!-- Newsletter Signup -->
-                    <div class="card mt-4">
-                        <div class="card-body bg-primary text-white text-center">
-                            <h5>Stay Updated</h5>
-                            <p class="small mb-3">Get the latest parenting tips and event updates</p>
-                            <form id="newsletter-form" class="d-flex gap-2" data-validate="true">
-                                <input type="email" class="form-control form-control-sm" placeholder="Your email" required>
-                                <button type="submit" class="btn btn-light btn-sm">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -379,6 +367,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Social sharing functions
+function shareOnWhatsApp(title, url) {
+    const text = encodeURIComponent(`${title} - ${url}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+function shareOnInstagram(title, url) {
+    // Instagram doesn't support direct sharing via URL, so we'll copy to clipboard
+    const text = `${title} - ${url}`;
+    navigator.clipboard.writeText(text).then(() => {
+        showAlert('Link copied to clipboard! You can now paste it in Instagram.', 'success');
+    }).catch(() => {
+        showAlert('Please copy this link manually: ' + text, 'info');
+    });
+}
+
+function shareOnTikTok(title, url) {
+    // TikTok doesn't support direct sharing via URL, so we'll copy to clipboard
+    const text = `${title} - ${url}`;
+    navigator.clipboard.writeText(text).then(() => {
+        showAlert('Link copied to clipboard! You can now paste it in TikTok.', 'success');
+    }).catch(() => {
+        showAlert('Please copy this link manually: ' + text, 'info');
+    });
+}
 
 // Utility function to show alerts
 function showAlert(message, type) {
