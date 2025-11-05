@@ -114,6 +114,9 @@ function showQRHoverModal() {
         <div class="qr-modal-content">
             <img src="img/qr-code.png" alt="QR Code for quick contact" class="qr-image">
             <p class="qr-text">Scan for instant contact with Glitters & Giggles</p>
+            <button class="btn btn-primary btn-sm qr-share-btn" onclick="shareQRCode()">
+                <i class="fas fa-share me-1"></i>Share QR Code
+            </button>
         </div>
     `;
 
@@ -124,13 +127,44 @@ function showQRHoverModal() {
         modalOverlay.classList.add('show');
     }, 10);
 
-    // Hide modal on click
-    modalOverlay.addEventListener('click', function() {
-        modalOverlay.classList.remove('show');
-        setTimeout(() => {
-            modalOverlay.remove();
-        }, 300);
+    // Hide modal on click (but not on share button)
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('qr-modal-content')) {
+            modalOverlay.classList.remove('show');
+            setTimeout(() => {
+                modalOverlay.remove();
+            }, 300);
+        }
     });
+}
+
+// Share QR code functionality
+function shareQRCode() {
+    const qrImageUrl = window.location.origin + '/img/qr-code.png';
+    const shareText = 'Scan this QR code for instant contact with Glitters & Giggles!';
+    const shareUrl = window.location.href;
+
+    // Check if Web Share API is supported
+    if (navigator.share) {
+        navigator.share({
+            title: 'Glitters & Giggles QR Code',
+            text: shareText,
+            url: shareUrl
+        }).catch(console.error);
+    } else {
+        // Fallback: copy to clipboard or show share options
+        const shareData = `${shareText}\n\nQR Code: ${qrImageUrl}\n\nWebsite: ${shareUrl}`;
+
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareData).then(() => {
+                showAlert('QR code share link copied to clipboard!', 'success');
+            }).catch(() => {
+                showAlert('Share this: ' + shareData, 'info');
+            });
+        } else {
+            showAlert('Share this: ' + shareData, 'info');
+        }
+    }
 }
 
 // Utility function to show alerts
