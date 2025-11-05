@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeScrollEffects();
     initializeFormValidation();
+    initializeMobileNav();
 });
 
 // Animations on scroll
@@ -93,5 +94,52 @@ function initializeScrollEffects() {
         }
 
         lastScrollTop = scrollTop;
+    });
+}
+
+// Modern mobile navigation
+function initializeMobileNav() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const mobileNavOverlay = document.createElement('div');
+    const mobileNavMenu = document.createElement('div');
+
+    if (!navbarToggler) return;
+
+    // Create overlay
+    mobileNavOverlay.className = 'mobile-nav-overlay';
+    mobileNavOverlay.innerHTML = `
+        <div class="mobile-nav-menu">
+            <button class="mobile-nav-close">&times;</button>
+            <nav class="text-center">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="services.html">Services</a>
+                <a class="nav-link" href="gallery.html">Gallery</a>
+                <a class="nav-link" href="blog.html">Blog</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </nav>
+        </div>
+    `;
+
+    document.body.appendChild(mobileNavOverlay);
+
+    // Toggle mobile nav
+    navbarToggler.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileNavOverlay.classList.toggle('show');
+    });
+
+    // Close mobile nav
+    mobileNavOverlay.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('mobile-nav-close')) {
+            mobileNavOverlay.classList.remove('show');
+        }
+    });
+
+    // Close on nav link click
+    mobileNavOverlay.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNavOverlay.classList.remove('show');
+        });
     });
 }
