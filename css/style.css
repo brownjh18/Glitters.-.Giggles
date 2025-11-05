@@ -655,9 +655,9 @@ body {
 
 .mobile-nav-menu {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
+    top: 80px;
+    right: 20px;
+    transform: scale(0.8);
     background: white;
     border-radius: 20px;
     padding: 2rem;
@@ -671,7 +671,7 @@ body {
 }
 
 .mobile-nav-overlay.show .mobile-nav-menu {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     opacity: 1;
     visibility: visible;
 }
