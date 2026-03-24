@@ -18,10 +18,12 @@ function loadGalleryGrid() {
     if (!container) return;
 
     container.innerHTML = galleryItems.map((item, index) => {
+        // Use lowercase 'gallery' for items 1-8, uppercase 'Gallery' for 9-35
+        const prefix = item.id <= 8 ? 'gallery' : 'Gallery';
         return `
         <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
             <div class="gallery-item position-relative">
-                <img src="img/Gallery-${item.id}.jpg" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/Gallery-${item.id}.jpg', '${item.title}')">
+                <img src="img/${prefix}-${item.id}.jpg" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/${prefix}-${item.id}.jpg', '${item.title}')">
                 <div class="gallery-overlay">
                     <div class="text-center">
                         <h6>${item.title}</h6>
