@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Load gallery grid
 function loadGalleryGrid() {
     const galleryItems = [];
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 35; i++) {
         galleryItems.push({
             id: i,
             title: `Event ${i}`,
@@ -18,11 +18,10 @@ function loadGalleryGrid() {
     if (!container) return;
 
     container.innerHTML = galleryItems.map((item, index) => {
-        const imageName = item.id <= 8 ? 'gallery' : 'Gallery';
         return `
         <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
             <div class="gallery-item position-relative">
-                <img src="img/${imageName}-${item.id}.jpg" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/${imageName}-${item.id}.jpg', '${item.title}')">
+                <img src="img/Gallery-${item.id}.jpg" alt="${item.title}" class="img-fluid rounded shadow-sm" onclick="openLightbox('img/Gallery-${item.id}.jpg', '${item.title}')">
                 <div class="gallery-overlay">
                     <div class="text-center">
                         <h6>${item.title}</h6>
